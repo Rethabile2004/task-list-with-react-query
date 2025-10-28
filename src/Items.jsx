@@ -3,22 +3,22 @@ import SingleItem from './SingleItem';
 import { customFetch } from './utils';
 const Items = ({ items }) => {
 
-    const {data,isLoading,isError,error}=useQuery({
-      queryKey:['tasks'],
-      queryFn:async()=>{
-        const {data}=await customFetch.get('/');
-        return data;
-      }
-    })
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['tasks'],
+    queryFn: async () => {
+      const { data } = await customFetch.get('/');
+      return data;
+    }
+  })
 
-    if(isLoading){
-      return<p>Loading...</p>
-    }
-    if(isError){
-      return <p>{error.message}</p>
-    }
-    console.log(data.taskList);
-    
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+  if (isError) {
+    return <p>{error.message}</p>
+  }
+  console.log(data.taskList);
+
   return (
     <div className='items'>
       {data.taskList.map((item) => {
